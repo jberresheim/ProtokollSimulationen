@@ -1,10 +1,11 @@
 # importing libraries
 import random
-
+import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
+import os
 
 #Schnelligkeit der Simulation setzen
 animationSpeed = 1500
@@ -835,6 +836,11 @@ class FullSequenceWindow(QWidget):
         self.fullSequenceTextBox.setPlainText("".join(sequence))
         self.fullSequenceTextBox.setReadOnly(True)
 
+if ("-h" in sys.argv):
+    if hasattr(PyQt5.QtCore.Qt, 'AA_EnableHighDpiScaling'):
+        PyQt5.QtWidgets.QApplication.setAttribute(PyQt5.QtCore.Qt.AA_EnableHighDpiScaling, True)
+    if hasattr(PyQt5.QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+        PyQt5.QtWidgets.QApplication.setAttribute(PyQt5.QtCore.Qt.AA_UseHighDpiPixmaps, True)
 App = QApplication(sys.argv)
 window = Window()
 #start der App

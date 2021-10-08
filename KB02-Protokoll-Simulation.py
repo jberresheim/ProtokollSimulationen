@@ -1,9 +1,11 @@
 # importing libraries
 import random
+import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
+import os
 
 #Schnelligkeit der Simulation setzen
 animationSpeed = 2500
@@ -15,7 +17,7 @@ class Window(QMainWindow):
         #Titel für das Fenster erstellen
         self.setWindowTitle("KB02 Protokoll")
         #Geometrie des Fensters setzen
-        self.setGeometry(500, 100, 1000, 515) #(x-Achsee, y-Achse, Länge, Höhe)
+        self.setGeometry(500, 100, 1000, 515) #(x-Achse, y-Achse, Länge, Höhe)
 
         #Wenn Animation nicht läuft = False, damit während der Animation nichts verändert werden kann
         self.isAnimationRunning = False
@@ -337,6 +339,11 @@ class FullSequenceWindow(QWidget):
         self.fullSequenceTextBox.setPlainText("".join(sequence))
         self.fullSequenceTextBox.setReadOnly(True)
 
+if ("-h" in sys.argv):
+    if hasattr(PyQt5.QtCore.Qt, 'AA_EnableHighDpiScaling'):
+        PyQt5.QtWidgets.QApplication.setAttribute(PyQt5.QtCore.Qt.AA_EnableHighDpiScaling, True)
+    if hasattr(PyQt5.QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+        PyQt5.QtWidgets.QApplication.setAttribute(PyQt5.QtCore.Qt.AA_UseHighDpiPixmaps, True)
 App = QApplication(sys.argv)
 window = Window()
 #start der App
